@@ -1,0 +1,23 @@
+<!-- <app-untyped-example></app-untyped-example>
+
+<app-typed-form-example></app-typed-form-example> -->
+<form [formGroup]="mainForm">
+  <div>
+    <input type="checkbox" formControlName="isSalesConnectPartner" />
+    <label for="isMain">Sales Connect Partner</label>
+  </div>
+  <div>
+    <input type="checkbox" formControlName="isSalesBusinessPartner" />
+    <label for="isFee">Sales Business Partner</label>
+  </div>
+  <div>
+    <input type="checkbox" formControlName="isSupplyPartner" />
+    <label for="isFee">Supply Partner</label>
+  </div>
+  <hr />
+  <app-wallet-creation-form
+    [isSalesConnectPartner]="mainForm.value.isSalesConnectPartner ?? false"
+    [isSalesBusinessPartner]="mainForm.value.isSalesBusinessPartner ?? false"
+    [isSupplyPartner]="mainForm.value.isSupplyPartner ?? false"
+  ></app-wallet-creation-form>
+</form>

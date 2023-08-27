@@ -1,0 +1,13 @@
+<form [formGroup]="salesConnectFormGroup">
+  <div>
+    <input type="checkbox" formControlName="isMain" />
+    <label for="isMain">Main</label>
+  </div>
+  <div>
+    <input type="checkbox" formControlName="isFee" />
+    <label for="isFee">Fee</label>
+  </div>
+
+  walletCategoryCode:
+  {{ salesConnectFormGroup.value.walletCategoryCode }}
+</form>
