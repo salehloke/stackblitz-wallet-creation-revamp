@@ -1,5 +1,5 @@
 import 'zone.js/dist/zone';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { UntypedExampleComponent } from './untyped-example/untyped-example.component';
@@ -11,6 +11,7 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'my-app',
@@ -33,7 +34,7 @@ import {
 
   // `,
 })
-export class App {
+export class App implements OnInit {
   name = 'Angular';
 
   mainForm = new FormGroup({
@@ -42,8 +43,28 @@ export class App {
     isSupplyPartner: new FormControl(false),
   });
 
+  existingDataForm = new FormGroup({
+    isMainExists: new FormControl(false),
+    isFeeExists: new FormControl(false),
+    isBusinessExists: new FormControl(false),
+  });
+
+  isMainExists$ = new BehaviorSubject<boolean>(false);
+
+  ngOnInit() {
+    this.existingDataForm.valueChanges.subscribe((value) => {
+      if (value.isMainExists) {
+        this.isMainExists$.next(true);
+      }
+    });
+  }
+
   get isSalesConnectPartner() {
     return this.mainForm.value.isSalesConnectPartner ?? false;
+  }
+
+  get existingData() {
+    return this.existingDataForm.value;
   }
 }
 

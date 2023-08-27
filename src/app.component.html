@@ -14,10 +14,26 @@
     <input type="checkbox" formControlName="isSupplyPartner" />
     <label for="isFee">Supply Partner</label>
   </div>
-  <hr />
-  <app-wallet-creation-form
-    [isSalesConnectPartner]="mainForm.value.isSalesConnectPartner ?? false"
-    [isSalesBusinessPartner]="mainForm.value.isSalesBusinessPartner ?? false"
-    [isSupplyPartner]="mainForm.value.isSupplyPartner ?? false"
-  ></app-wallet-creation-form>
 </form>
+<hr />
+<form [formGroup]="existingDataForm">
+  <div>
+    <input type="checkbox" formControlName="isMainExists" />
+    <label for="isMain">Is Main Exists?</label>
+  </div>
+  <div>
+    <input type="checkbox" formControlName="isFeeExists" />
+    <label for="isFee">Is Fee Exists?</label>
+  </div>
+  <div>
+    <input type="checkbox" formControlName="isBusinessExists" />
+    <label for="isFee">Is Business Exists?</label>
+  </div>
+</form>
+<hr />
+<app-wallet-creation-form
+  [isMainExists]="existingData.isMainExists ?? false"
+  [isSalesConnectPartner]="mainForm.value.isSalesConnectPartner ?? false"
+  [isSalesBusinessPartner]="mainForm.value.isSalesBusinessPartner ?? false"
+  [isSupplyPartner]="mainForm.value.isSupplyPartner ?? false"
+></app-wallet-creation-form>

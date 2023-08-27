@@ -22,6 +22,9 @@ export class WalletCreationFormComponent implements OnInit {
   @Input() isSalesBusinessPartner = false;
   @Input() isSupplyPartner = false;
 
+  @Input() isMainExists!: boolean;
+  @Input() isFeeExists!: boolean;
+
   /**
    * -wallet-creation-form
    * --sales-business-partner
