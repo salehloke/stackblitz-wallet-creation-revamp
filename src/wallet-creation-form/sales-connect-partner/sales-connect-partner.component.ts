@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -16,8 +16,12 @@ import { tap } from 'rxjs';
   templateUrl: './sales-connect-partner.component.html',
   styleUrls: ['./sales-connect-partner.component.css'],
 })
-export class SalesConnectPartnerComponent implements OnInit {
+export class SalesConnectPartnerComponent
+  implements OnInit, AfterViewInit, AfterViewChecked
+{
   @Input() requisitionDetails: any;
+  @Input() isMainExists!: boolean;
+  @Input() isFeeExists!: boolean;
 
   salesConnectFormGroup: FormGroup<SalesConnectFormModel> =
     new FormGroup<SalesConnectFormModel>({
@@ -26,7 +30,17 @@ export class SalesConnectPartnerComponent implements OnInit {
       walletCategoryCode: new FormControl<number>(0),
     });
 
-  constructor() {}
+  constructor(private readonly changeDetectorRef: ChangeDetectorRef) {}
+
+  ngAfterViewChecked(): void {
+    this.changeDetectorRef.detectChanges();
+  }
+
+  ngAfterViewInit() {
+    if (this.isMainExists) {
+      this.f.isMain.disable();
+    }
+  }
 
   ngOnInit() {
     this.salesConnectFormGroup.valueChanges
@@ -69,6 +83,10 @@ export class SalesConnectPartnerComponent implements OnInit {
         // neither is checked
         return 0;
     }
+  }
+
+  get f() {
+    return this.salesConnectFormGroup.controls;
   }
 }
 

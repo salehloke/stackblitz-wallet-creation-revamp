@@ -1,5 +1,9 @@
 <div *ngIf="isSalesConnectPartner">
-  <app-sales-connect-partner> </app-sales-connect-partner>
+  <app-sales-connect-partner
+    [isMainExists]="isMainExists"
+    [isFeeExists]="isFeeExists"
+  >
+  </app-sales-connect-partner>
 </div>
 
 <div *ngIf="isSalesBusinessPartner">
