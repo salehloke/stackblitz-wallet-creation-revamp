@@ -24,6 +24,7 @@ export class WalletCreationFormComponent implements OnInit {
 
   @Input() isMainExists!: boolean;
   @Input() isFeeExists!: boolean;
+  @Input() isBusinessExists!: boolean;
 
   /**
    * -wallet-creation-form

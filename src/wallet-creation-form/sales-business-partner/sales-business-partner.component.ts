@@ -18,6 +18,8 @@ import { tap } from 'rxjs';
   styleUrls: ['./sales-business-partner.component.css'],
 })
 export class SalesBusinessPartnerComponent implements OnInit {
+  @Input() isBusinessExists!: boolean;
+
   salesBusinessFormGroup = new FormGroup({});
 
   constructor() {}

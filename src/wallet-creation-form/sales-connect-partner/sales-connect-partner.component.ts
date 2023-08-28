@@ -1,5 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  Input,
+  OnInit,
+  AfterViewChecked,
+  ChangeDetectorRef,
+} from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -38,7 +45,10 @@ export class SalesConnectPartnerComponent
 
   ngAfterViewInit() {
     if (this.isMainExists) {
-      this.f.isMain.disable();
+      this.f.isMain.disable({ emitEvent: false });
+    }
+    if (this.isFeeExists) {
+      this.f.isFee.disable({ emitEvent: false });
     }
   }
 
